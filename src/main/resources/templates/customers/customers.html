@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Customers</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-light">
+        <a class="navbar-brand" href="/">Warehouse</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/goods">Goods</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/customers">Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/waybills">Waybills</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
+    <form method="GET" action="/customers/search-by-id">
+        <label for="id">Find customer by id: </label>
+        <input id="id" name="id" type="number" placeholder="Enter id to search">
+        <input type="submit" value="Search by id">
+    </form>
+    <br>
+    <form method="GET" action="/customers/search-by-text">
+        <label for="text">Find by matching in name/email: </label>
+        <input id="text" name="text" type="text" placeholder="Enter text to search">
+        <input type="submit" value="Search by text">
+    </form>
+    <hr>
+    <a href="/customers/new">Create new customer</a>
+    <p><a href="/">Back to main menu</a></p>
+    <hr>
+    <table class="table table-bordered">
+        <thead><td>ID</td><td>Customer's name</td></thead>
+        <tbody>
+        <div th:each="customer : ${customersList}">
+            <tr>
+                <td><a th:text="${customer.id}" th:href="@{/customers/{id}(id=${customer.id})}"></a></td>
+                <td><a th:text="${customer.name} + ' ' + ${customer.surname}" th:href="@{/customers/{id}(id=${customer.id})}"></a></td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+    <br>
+</body>
+</html>

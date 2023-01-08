@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Create new customer</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body class="container-fluid">
+	<nav class="navbar navbar-expand-sm bg-light">
+		<a class="navbar-brand" href="/">Warehouse</a>
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="/goods">Goods</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/customers">Customers</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/waybills">Waybills</a>
+			</li>
+		</ul>
+	</nav>
+	<br>
+	<form th:method="POST" th:action="@{/customers}" th:object="${customer}">
+		<label for="name">Customer name: </label>
+		<input id="name" type="text" th:field="*{name}">
+		<div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">NAME ERROR</div>
+		<br>
+		<label for="price">Customer surname: </label>
+		<input id="price" type="text" th:field="*{surname}">
+		<div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">SURNAME ERROR</div>
+		<br>
+		<label for="comment">Comment: </label>
+		<input id="comment" type="text" th:field="*{email}">
+		<div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">EMAIL ERROR</div>
+		<br>
+		<input type="submit" value="Create">
+	</form>
+</body>
+</html>

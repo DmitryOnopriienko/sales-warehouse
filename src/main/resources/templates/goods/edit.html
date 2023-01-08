@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Edit</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-light">
+        <a class="navbar-brand" href="/">Warehouse</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/goods">Goods</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/customers">Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/waybills">Waybills</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
+    <form th:method="PATCH" th:action="@{/goods/{id}(id=${goods.id})}" th:object="${goods}">
+        <label for="name">Goods name: </label>
+        <input id="name" type="text" th:field="*{name}">
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">NAME ERROR</div>
+        <br>
+        <label for="price">Price: </label>
+        <input id="price" type="text" th:field="*{price}">
+        <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">PRICE ERROR</div>
+        <br>
+        <label for="comment">Comment: </label>
+        <input id="comment" type="text" th:field="*{comment}">
+<!--        <div style="color:red" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}">COMMENT ERROR</div>-->
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>

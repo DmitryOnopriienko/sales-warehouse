@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="'Waybills of ' + ${customer.name} + ' ' + ${customer.surname}">Title</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body class="container-fluid">
+	<nav class="navbar navbar-expand-sm bg-light">
+		<a class="navbar-brand" href="/">Warehouse</a>
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="/goods">Goods</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/customers">Customers</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/waybills">Waybills</a>
+			</li>
+		</ul>
+	</nav>
+	<br>
+	<p th:text="'Waybills of ' + ${customer.name} + ' ' + ${customer.surname}"></p>
+	<form th:method="GET" th:action="@{/customers/{id}/waybills(id=${customer.id})}">
+		<input type="radio" name="order-by" id="order-by-id" value="id" th:checked="${orderBy.equals('id')}">
+		<label for="order-by-id">ID</label>
+
+		<input type="radio" name="order-by" id="order-by-service-price" value="service_price" th:checked="${orderBy.equals('service_price')}">
+		<label for="order-by-service-price">Service price</label>
+
+		<input type="radio" name="order-by" id="order-by-total-price" value="total_price" th:checked="${orderBy.equals('total_price')}">
+		<label for="order-by-total-price">Total price</label>
+
+		<input type="radio" name="order-by" id="order-by-order-date" value="order_date" th:checked="${orderBy.equals('order_date')}">
+		<label for="order-by-order-date">Order date</label>
+
+		<input type="submit" value="Sort">
+	</form>
+	<table class="table table-bordered">
+		<thead><td>ID</td><td>Driver info</td><td>Service price</td><td>Total price</td><td>Order date</td></thead>
+		<tbody>
+		<div th:each="waybill : ${customerWaybills}">
+			<tr>
+				<td><a th:text="${waybill.id}" th:href="@{/waybills/{id}(id=${waybill.id})}"></a></td>
+				<td th:text="${waybill.driverName} + ' ' + ${waybill.driverSurname}"></td>
+				<td th:text="'$' + ${waybill.servicePrice}"></td>
+				<td th:text="'$' + ${waybill.totalPrice}"></td>
+				<td th:text="${waybill.orderDate}"></td>
+			</tr>
+		</div>
+		</tbody>
+	</table>
+	<a th:href="@{/customers/{id}(id=${customer.id})}" th:text="'Back to ' + ${customer.name} + ' ' + ${customer.surname}"></a>
+</body>
+</html>

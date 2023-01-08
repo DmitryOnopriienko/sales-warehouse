@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="'Waybill №' + ${waybill.id}">Title</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body class="container-fluid">
+	<nav class="navbar navbar-expand-sm bg-light">
+		<a class="navbar-brand" href="/">Warehouse</a>
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="/goods">Goods</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/customers">Customers</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/waybills">Waybills</a>
+			</li>
+		</ul>
+	</nav>
+	<br>
+	<div class="container row">
+		<table class="col-6 table table-bordered">
+			<tr>
+				<td>Driver info</td>
+				<td th:text="${waybill.driverName} + ' ' + ${waybill.driverSurname} + ' ' + ${waybill.driverPatronymic}"></td>
+			</tr>
+			<tr>
+				<td>Car number</td>
+				<td th:text="${waybill.carNumber}"></td>
+			</tr>
+			<tr>
+				<td>Customer</td>
+				<td th:text="${waybill.customer.name} + ' ' + ${waybill.customer.surname}" th:href="@{/customers/{id}(id=${waybill.customerId})}"></td>
+			</tr>
+			<tr>
+				<td>Order date (YYYY-MM-DD)</td>
+				<td th:text="${waybill.orderDate}"></td>
+			</tr>
+		</table>
+	</div>
+<!--	<p>Driver: <div th:text="${waybill.driverName} + ' ' + ${waybill.driverSurname} + ' ' + ${waybill.driverPatronymic}"></div></p>-->
+<!--	<p>Car number: <div th:text="${waybill.carNumber}"></div></p>-->
+<!--	<p>Customer: <a th:text="${waybill.customer.name} + ' ' + ${waybill.customer.surname}" th:href="@{/customers/{id}(id=${waybill.customerId})}"></a></p>-->
+<!--	<p>Order date (YYYY-MM-DD): <div th:text="${waybill.orderDate}"></div></p>-->
+	<p><a href="/waybills">Go to waybills list</a></p>
+	<hr>
+	<table class="table table-bordered">
+		<thead><td>Product id</td><td>Product name</td><td>Price</td><td>Amount</td></thead>
+		<tbody>
+		<div th:each="product : ${goodsMap}">
+			<tr>
+				<td><a th:text="${product.key.id}" th:href="@{/goods/{id}(id=${product.key.id})}"></a></td>
+				<td><a th:text="${product.key.name}" th:href="@{/goods/{id}(id=${product.key.id})}"></a></td>
+				<td><a th:text="'$'+${product.key.price}" th:href="@{/goods/{id}(id=${product.key.id})}"></a></td>
+				<td th:text="${product.value}"></td>
+			</tr>
+		</div>
+		</tbody>
+	</table>
+	<p><b th:text="'Total price: $' + ${totalPrice}"></b></p>
+</body>
+</html>
