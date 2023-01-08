@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td>Customer</td>
-				<td th:text="${waybill.customer.name} + ' ' + ${waybill.customer.surname}" th:href="@{/customers/{id}(id=${waybill.customerId})}"></td>
+				<td><a th:text="${waybill.customer.name} + ' ' + ${waybill.customer.surname}" th:href="@{/customers/{id}(id=${waybill.customerId})}"></a></td>
 			</tr>
 			<tr>
 				<td>Order date (YYYY-MM-DD)</td>
