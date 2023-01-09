@@ -129,4 +129,8 @@ public class WaybillsDao {
     waybills.forEach(this::setGoodsAndTotalPrice);
     return waybills;
   }
+
+  public void delete(int id) {
+    jdbcTemplate.update("DELETE FROM waybill WHERE id=?", id);
+  }
 }

@@ -45,6 +45,9 @@
 		</table>
 	</div>
 	<p><a href="/waybills">Go to waybills list</a></p>
+	<form th:method="DELETE" th:action="@{/waybills/{id}(id=${waybill.id})}">
+		<input type="submit" value="Delete waybill">
+	</form>
 	<hr>
 	<table class="table table-bordered">
 		<thead><td>Product id</td><td>Product name</td><td>Price</td><td>Amount</td></thead>
