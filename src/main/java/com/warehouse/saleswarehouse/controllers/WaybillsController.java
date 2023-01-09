@@ -76,4 +76,9 @@ public class WaybillsController {
     waybillsDao.delete(id);
     return "redirect:/waybills";
   }
+
+  @GetMapping("/search-by-id")
+  public String searchById(@RequestParam("id") int id) {
+    return "redirect:/waybills/" + id;
+  }
 }
