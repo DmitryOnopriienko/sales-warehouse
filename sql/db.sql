@@ -67,14 +67,14 @@ VALUES ('Olya', 'Onopriienko', 'email_of_consumer@gmail.com'),
        ('Oleh', 'Onopriienko', 'email_of_consumer2@gmail.com'),
        ('Anna', 'Onopriienko', 'email_of_consumer3@gmail.com');
 
-INSERT goods(g_name, price)
-VALUES ('Square pants', 10.99),
-       ('Shawarma mini', 14.99),
-       ('Shawarma original', 19.99),
-       ('Shawarma XL', 25.49),
-       ('Shawarma XXXL', 30.99),
-       ('HotWheels toy', 5.49),
-       ('Kozacka Shashka', 10.49);
+INSERT goods(g_name, price, comment)
+VALUES ('Square pants', 10.99, 'Sponge Bob accessoire'),
+       ('Shawarma mini', 14.99, 'food'),
+       ('Shawarma original', 19.99, 'food'),
+       ('Shawarma XL', 25.49, 'food'),
+       ('Shawarma XXXL', 30.99, 'food'),
+       ('HotWheels toy', 5.49, 'car toy'),
+       ('Kozacka Shashka', 10.49, 'Ukrainian power');
 
 INSERT waybill(car_number, driver_name, driver_surname, driver_patronymic, service_price, consumer_id, order_date)
 VALUES ('AA 5703 HM', 'Sereha', 'Ivanov', 'Petrovych', 64.49, 1, '2021-12-25'),
@@ -102,18 +102,18 @@ VALUES (3, 1, 5),
 
 SET SQL_SAFE_UPDATES = 0;
 
-UPDATE goods
-SET comment = 'Sponge Bob accessoire'
-WHERE g_name = 'Square pants';
-
-UPDATE goods
-SET comment = 'food'
-WHERE g_name LIKE 'Shawarma%';
-
-UPDATE goods
-SET comment = 'car toy'
-WHERE g_name LIKE 'HotWheels%';
-
-UPDATE goods
-SET comment = 'Ukrainian power'
-WHERE g_name LIKE '%Shashka';
+# UPDATE goods
+# SET comment = 'Sponge Bob accessoire'
+# WHERE g_name = 'Square pants';
+#
+# UPDATE goods
+# SET comment = 'food'
+# WHERE g_name LIKE 'Shawarma%';
+#
+# UPDATE goods
+# SET comment = 'car toy'
+# WHERE g_name LIKE 'HotWheels%';
+#
+# UPDATE goods
+# SET comment = 'Ukrainian power'
+# WHERE g_name LIKE '%Shashka';
